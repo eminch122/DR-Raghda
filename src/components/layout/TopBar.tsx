@@ -124,7 +124,7 @@ export default function TopBar() {
 
             {/* Dropdown Menu */}
             {dropdownOpen && (
-              <div className="absolute right-0 mt-1.5 w-36 bg-[#0B2528]/95 backdrop-blur-xl border border-goldPrimary/35 rounded-2xl shadow-2xl p-1.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+              <div className="absolute end-0 mt-1.5 w-36 bg-[#0B2528]/95 backdrop-blur-xl border border-goldPrimary/35 rounded-2xl shadow-2xl p-1.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
                 {languages.map(({ code, name, Flag }) => {
                   const isSelected = code === currentLang;
                   return (

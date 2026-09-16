@@ -56,7 +56,7 @@ export default function Navbar() {
           </a>
 
           {/* Desktop Menu Links (Chronologically Ordered Dropdown & Streamlined Hierarchy) */}
-          <div className="hidden lg:flex items-center justify-center flex-1 mx-2 min-[1360px]:mx-4 gap-1 min-[1150px]:gap-2">
+          <div className="hidden min-[1150px]:flex items-center justify-center flex-1 mx-2 min-[1360px]:mx-4 gap-2">
             {/* 1. 'Le Cabinet' Dropdown */}
             <div className="nav-dropdown group">
               <button className="nav-dropdown-btn" aria-haspopup="true" aria-expanded="false">
@@ -165,7 +165,7 @@ export default function Navbar() {
           <button
             id="mobileMenuToggle"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2.5 rounded-xl text-slate-700 hover:bg-slate-100 focus:outline-none"
+            className="min-[1150px]:hidden p-2.5 rounded-xl text-slate-700 hover:bg-slate-100 focus:outline-none"
             aria-label="Ouvrir le menu"
           >
             <i className="fa-solid fa-bars-staggered text-2xl"></i>
@@ -177,7 +177,7 @@ export default function Navbar() {
       {mobileMenuOpen && (
         <div
           id="mobileMenu"
-          className="lg:hidden bg-white/98 border-b border-goldPrimary/20 px-6 py-6 space-y-4 shadow-xl backdrop-blur-lg"
+          className="min-[1150px]:hidden bg-white/98 border-b border-goldPrimary/20 px-6 py-6 space-y-4 shadow-xl backdrop-blur-lg"
         >
           <div className="space-y-1">
             <div className="text-[0.72rem] uppercase tracking-wider font-bold text-goldDark px-2 py-1">

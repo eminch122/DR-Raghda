@@ -34,7 +34,6 @@ export default function ReviewsSection() {
     fetch('/api/reviews')
       .then((res) => res.json())
       .then((data: ReviewsApiResponse) => {
-        console.log('[Reviews Section] API Response received:', data);
         setApiData(data);
       })
       .catch((err) => {

@@ -329,7 +329,6 @@ export default function SimulatorSection() {
                 className="w-full btn-gold text-base py-3.5 shadow-lg"
               >
                 <i className="fa-brands fa-whatsapp text-xl"></i>
-                <span>{t('sim_btn_send_whatsapp')} {siteConfig.clinic.phoneDisplay}</span>
                 <span>
                   {t('sim_btn_send_whatsapp')}{' '}
                   <bdi dir="ltr" className="inline-block [direction:ltr] [unicode-bidi:isolate]">

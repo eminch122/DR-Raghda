@@ -25,15 +25,12 @@ const slotOptions = [
 ];
 
 export default function ContactSection() {
-  const { t } = useLanguage();
   const { t, currentLang } = useLanguage();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
-  const [service, setService] = useState('Consultation & Bilan bucco-dentaire');
   const [serviceKey, setServiceKey] = useState('consultation');
   const [date, setDate] = useState('');
-  const [slot, setSlot] = useState('Matinée (08h30 - 13h00)');
   const [slotKey, setSlotKey] = useState('morning');
   const [notes, setNotes] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
@@ -42,12 +39,10 @@ export default function ContactSection() {
     e.preventDefault();
 
     if (!name.trim() || !phone.trim()) {
-      alert('Veuillez renseigner votre nom et votre numéro de téléphone.');
       alert(t('contact_form_error_required'));
       return;
     }
 
-    const message = `Bonjour Dr Raghda Zribi,\n\nJe souhaite réserver une consultation à votre cabinet des Berges du Lac 2.\n\n🗓️ *Détails du Rendez-vous :*\n- Patient : ${name.trim()}\n- Téléphone : ${phone.trim()}\n- Email : ${email.trim() || 'Non renseigné'}\n- Motif de consultation : ${service}\n- Date souhaitée : ${date || 'Dès que possible'}\n- Créneau : ${slot}\n- Remarques : ${notes.trim() || 'Aucune note particulière'}\n\nMerci de me confirmer la disponibilité du rendez-vous.`;
     const serviceLabel = t(`contact_service_${serviceKey}`) || serviceKey;
     const slotLabel = t(`contact_slot_${slotKey}`) || slotKey;
 
@@ -79,7 +74,6 @@ export default function ContactSection() {
     <section id="contact" className="py-20 md:py-28 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
-          badge="Coordonnées &amp; Rendez-vous"
           badge={t('contact_badge')}
           title={t('contact_title')}
           subtitle={t('contact_subtitle')}
@@ -95,7 +89,6 @@ export default function ContactSection() {
               >
                 <i className="fa-solid fa-circle-check text-xl text-emerald-600"></i>
                 <div>
-                  <strong>Demande préparée !</strong> Votre message a été préparé pour transmission au cabinet via WhatsApp.
                   <strong>{t('contact_form_success_title')}</strong> {t('contact_form_success_desc')}
                 </div>
               </div>
@@ -105,7 +98,6 @@ export default function ContactSection() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    Nom &amp; Prénom *
                     {t('contact_form_name')}
                   </label>
                   <input
@@ -114,14 +106,12 @@ export default function ContactSection() {
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="Votre nom complet"
                     placeholder={t('contact_form_name_placeholder')}
                     className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-medicalTeal bg-white"
                   />
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    Téléphone / WhatsApp *
                     {t('contact_form_phone')}
                   </label>
                   <input
@@ -130,8 +120,6 @@ export default function ContactSection() {
                     required
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    placeholder="Ex: 54 670 828"
-                    className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-medicalTeal bg-white"
                     placeholder={t('contact_form_phone_placeholder')}
                     dir="ltr"
                     className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-medicalTeal bg-white [direction:ltr]"
@@ -142,7 +130,6 @@ export default function ContactSection() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    Email (optionnel)
                     {t('contact_form_email')}
                   </label>
                   <input
@@ -150,8 +137,6 @@ export default function ContactSection() {
                     id="bookEmail"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="votre.email@exemple.com"
-                    className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-medicalTeal bg-white"
                     placeholder={t('contact_form_email_placeholder')}
                     dir="ltr"
                     className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-medicalTeal bg-white [direction:ltr]"
@@ -159,33 +144,14 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    Motif de Consultation *
                     {t('contact_form_service')}
                   </label>
                   <select
                     id="bookService"
-                    value={service}
-                    onChange={(e) => setService(e.target.value)}
                     value={serviceKey}
                     onChange={(e) => setServiceKey(e.target.value)}
                     className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-medicalTeal bg-white"
                   >
-                    <option value="Consultation & Bilan bucco-dentaire">
-                      Consultation &amp; Bilan bucco-dentaire
-                    </option>
-                    <option value="Facettes dentaires & Esthétique">
-                      Facettes dentaires &amp; Esthétique
-                    </option>
-                    <option value="Aligneurs & Orthodontie invisible">
-                      Aligneurs &amp; Orthodontie invisible
-                    </option>
-                    <option value="Implantologie dentaire">Implantologie dentaire</option>
-                    <option value="Blanchiment Fläsh & Détartrage">
-                      Blanchiment Fläsh &amp; Détartrage
-                    </option>
-                    <option value="Prothèses fixes / Couronnes">Prothèses fixes / Couronnes</option>
-                    <option value="Soins conservateurs / Carie">Soins conservateurs / Carie</option>
-                    <option value="Urgence dentaire">Urgence dentaire</option>
                     {serviceOptions.map((opt) => (
                       <option key={opt.key} value={opt.key}>
                         {t(opt.labelKey)}
@@ -198,7 +164,6 @@ export default function ContactSection() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    Date Souhaitée
                     {t('contact_form_date')}
                   </label>
                   <input
@@ -211,21 +176,14 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                    Créneau Préféré
                     {t('contact_form_slot')}
                   </label>
                   <select
                     id="bookSlot"
-                    value={slot}
-                    onChange={(e) => setSlot(e.target.value)}
                     value={slotKey}
                     onChange={(e) => setSlotKey(e.target.value)}
                     className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-medicalTeal bg-white"
                   >
-                    <option value="Matinée (08h30 - 13h00)">Matinée (08h30 - 13h00)</option>
-                    <option value="Après-midi (14h00 - 19h00)">Après-midi (14h00 - 19h00)</option>
-                    <option value="Soirée (19h00 - 23h00)">Soirée (19h00 - 23h00)</option>
-                    <option value="Premier créneau disponible">Premier créneau disponible</option>
                     {slotOptions.map((opt) => (
                       <option key={opt.key} value={opt.key}>
                         {t(opt.labelKey)}
@@ -237,7 +195,6 @@ export default function ContactSection() {
 
               <div>
                 <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                  Remarques ou précisions
                   {t('contact_form_notes')}
                 </label>
                 <textarea
@@ -245,16 +202,13 @@ export default function ContactSection() {
                   rows={3}
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  placeholder="Précisez votre demande ou vos symptômes..."
                   placeholder={t('contact_form_notes_placeholder')}
                   className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-medicalTeal bg-white"
                 ></textarea>
               </div>
 
-              <button type="submit" className="w-full btn-primary text-base py-4 shadow-xl">
               <button type="submit" className="w-full btn-primary text-base py-4 shadow-xl cursor-pointer">
                 <i className="fa-regular fa-paper-plane text-goldPrimary"></i>
-                <span>Envoyer la demande de rendez-vous</span>
                 <span>{t('contact_form_submit')}</span>
               </button>
             </form>
@@ -287,7 +241,6 @@ export default function ContactSection() {
                     <i className="fa-solid fa-location-dot"></i>
                   </div>
                   <div>
-                    <div className="font-bold text-white">Adresse du Cabinet</div>
                     <div className="font-bold text-white">{t('contact_info_address_title')}</div>
                     <div className="text-slate-300 text-xs mt-0.5">
                       {siteConfig.clinic.address.building}, {siteConfig.clinic.address.floor}
@@ -295,7 +248,6 @@ export default function ContactSection() {
                       {siteConfig.clinic.address.street}
                       <br />
                       <span className="text-goldLight font-semibold">
-                        {siteConfig.clinic.address.city}, Tunisie
                         {siteConfig.clinic.address.city}, {t('contact_info_country')}
                       </span>
                     </div>
@@ -307,13 +259,11 @@ export default function ContactSection() {
                     <i className="fa-solid fa-phone"></i>
                   </div>
                   <div>
-                    <div className="font-bold text-white">Téléphone direct / WhatsApp</div>
                     <div className="font-bold text-white">{t('contact_info_phone_title')}</div>
                     <a
                       href={`tel:${siteConfig.clinic.phone}`}
                       className="text-goldLight text-base font-bold hover:underline block mt-0.5"
                     >
-                      {siteConfig.clinic.phoneDisplay}
                       <bdi dir="ltr" className="inline-block [direction:ltr] [unicode-bidi:isolate]">
                         {siteConfig.clinic.phoneDisplay}
                       </bdi>
@@ -326,7 +276,6 @@ export default function ContactSection() {
                     <i className="fa-solid fa-envelope"></i>
                   </div>
                   <div>
-                    <div className="font-bold text-white">Email</div>
                     <div className="font-bold text-white">{t('contact_info_email_title')}</div>
                     <a
                       href={siteConfig.social.email}
@@ -343,13 +292,10 @@ export default function ContactSection() {
                     <i className="fa-regular fa-clock"></i>
                   </div>
                   <div>
-                    <div className="font-bold text-white">Horaires d&apos;ouverture</div>
                     <div className="font-bold text-white">{t('contact_info_hours_title')}</div>
                     <div className="text-slate-300 text-xs mt-0.5">
-                      {siteConfig.clinic.openingHours}
                       {t('cabinet_p4_desc')}
                       <br />
-                      Sur rendez-vous préalable
                       {t('contact_info_hours_sub')}
                     </div>
                   </div>
@@ -359,7 +305,6 @@ export default function ContactSection() {
               <div className="pt-4 border-t border-white/10 flex flex-wrap gap-3">
                 <a href="#location" className="btn-gold text-xs px-5 py-2.5">
                   <i className="fa-solid fa-map-location-dot"></i>
-                  <span>Voir le Plan d&apos;Accès</span>
                   <span>{t('contact_btn_map')}</span>
                 </a>
                 <a
@@ -379,4 +324,3 @@ export default function ContactSection() {
     </section>
   );
 }
-

@@ -3,8 +3,23 @@ import { siteConfig } from '@/data/siteConfig';
 import { curatedReviews } from '@/data/reviews';
 
 export async function GET() {
-  const apiKey = process.env.GOOGLE_PLACES_API_KEY || 'AIzaSyC8nxvU9Kh9dz-5brazqwc1tnMIodbNjck';
+  const apiKey = process.env.GOOGLE_PLACES_API_KEY;
   const placeId = siteConfig.google.placeId;
+
+  const fallback = {
+    rating: 4.9,
+    userRatingCount: 146,
+    reviews: null,
+    testimonials: curatedReviews,
+    googleMapsLinks: {
+      reviewsUri: siteConfig.google.allReviewsUrl,
+      writeAReviewUri: siteConfig.google.writeReviewUrl,
+    },
+  };
+
+  if (!apiKey) {
+    return NextResponse.json(fallback);
+  }
 
   try {
     const apiUrl = `https://places.googleapis.com/v1/places/${placeId}?key=${apiKey}&fields=id,displayName,formattedAddress,rating,userRatingCount,reviews,googleMapsLinks`;
@@ -23,11 +38,6 @@ export async function GET() {
 
     if (res.ok) {
       const data = await res.json();
-      console.log('[Google Places API Debug] Response received successfully:');
-      console.log('[Google Places API Debug] Response received successfully:',data);
-
-      console.log('[Google Places API Debug] Rating:', data.rating, 'UserRatingCount:', data.userRatingCount);
-      console.log('[Google Places API Debug] Reviews in payload:', data.reviews ? data.reviews.length : 0);
 
       if (data.rating) liveRating = Number(data.rating);
       if (data.userRatingCount) liveCount = Number(data.userRatingCount);
@@ -57,15 +67,6 @@ export async function GET() {
     );
   } catch (error) {
     console.error('[Google Places API Debug] Error fetching places reviews:', error);
-    return NextResponse.json({
-      rating: 4.9,
-      userRatingCount: 146,
-      reviews: null,
-      testimonials: curatedReviews,
-      googleMapsLinks: {
-        reviewsUri: siteConfig.google.allReviewsUrl,
-        writeAReviewUri: siteConfig.google.writeReviewUrl,
-      },
-    });
+    return NextResponse.json(fallback);
   }
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useCallback, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useCallback, ReactNode } from 'react';
 import { translations } from '@/data/translations';
 import { Lang, TranslationDictionary } from '@/types';
 
@@ -16,24 +16,14 @@ const LanguageContext = createContext<LanguageContextValue | null>(null);
 const STORAGE_KEY = 'dr_zribi_lang';
 const VALID_LANGS: Lang[] = ['fr', 'en', 'ar'];
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [currentLang, setCurrentLang] = useState<Lang>('fr');
-
-  // Restore saved language on mount
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY) as Lang | null;
-      if (saved && VALID_LANGS.includes(saved)) {
-        setCurrentLang(saved);
-        if (typeof document !== 'undefined') {
-          document.documentElement.lang = saved;
-          document.documentElement.setAttribute('dir', saved === 'ar' ? 'rtl' : 'ltr');
-        }
-      }
-    } catch {
-      // localStorage may fail in private mode or restricted iframe
-    }
-  }, []);
+export function LanguageProvider({
+  children,
+  initialLang,
+}: {
+  children: ReactNode;
+  initialLang: Lang;
+}) {
+  const [currentLang, setCurrentLang] = useState<Lang>(initialLang);
 
   const setLanguage = useCallback((lang: Lang) => {
     if (!VALID_LANGS.includes(lang)) return;

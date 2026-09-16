@@ -27,7 +27,6 @@ export default function ContactStrip() {
           <div className="flex items-center gap-3 flex-wrap">
             <a href={`tel:${siteConfig.clinic.phone}`} className="btn-gold text-sm px-6 py-2.5">
               <i className="fa-solid fa-phone"></i>
-              <span>{siteConfig.clinic.phoneDisplay}</span>
               <bdi dir="ltr" className="inline-block [direction:ltr] [unicode-bidi:isolate]">
                 {siteConfig.clinic.phoneDisplay}
               </bdi>

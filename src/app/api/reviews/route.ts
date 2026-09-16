@@ -30,7 +30,7 @@ export async function GET() {
 
     let liveRating = 4.9;
     let liveCount = 146;
-    let liveLinks = {
+    const liveLinks = {
       reviewsUri: siteConfig.google.allReviewsUrl,
       writeAReviewUri: siteConfig.google.writeReviewUrl,
     };

@@ -34,7 +34,7 @@ export default function Navbar() {
       <div className="w-full max-w-[1550px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 sm:h-24">
           {/* Brand Logo with Official Image */}
-          <a href="#hero" className="flex items-center gap-3.5 group flex-shrink-0">
+          <a href="#hero" className="flex items-center gap-3 group flex-shrink-0">
             <div className="relative h-[52px] sm:h-[58px] w-[160px] sm:w-[100px]">
               <Image
                 src="/media/clinic-logo.png"

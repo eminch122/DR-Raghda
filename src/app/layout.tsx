@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { cookies } from 'next/headers';
 import { Playfair_Display, Plus_Jakarta_Sans, Cinzel, Tajawal } from 'next/font/google';
 import './globals.css';
 import { LanguageProvider } from '@/context/LanguageContext';
@@ -9,6 +10,10 @@ import Footer from '@/components/layout/Footer';
 import WhatsAppFloat from '@/components/ui/WhatsAppFloat';
 import VideoModal from '@/components/ui/VideoModal';
 import { siteConfig } from '@/data/siteConfig';
+import { Lang } from '@/types';
+
+const LANG_COOKIE = 'dr_zribi_lang';
+const VALID_LANGS: Lang[] = ['fr', 'en', 'ar'];
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -96,18 +101,19 @@ const jsonLd = {
   medicalSpecialty: ['Dentistry', 'Implantology', 'Prosthodontics', 'Cosmetic Dentistry', 'Orthodontics'],
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const cookieStore = await cookies();
+  const saved = cookieStore.get(LANG_COOKIE)?.value as Lang | undefined;
+  const lang: Lang = saved && VALID_LANGS.includes(saved) ? saved : 'fr';
+  const dir = lang === 'ar' ? 'rtl' : 'ltr';
+
   return (
     <html
-      lang="fr"
+      lang={lang}
+      dir={dir}
       className={`scroll-smooth ${playfair.variable} ${jakarta.variable} ${cinzel.variable} ${tajawal.variable}`}
     >
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var s=localStorage.getItem('dr_zribi_lang');if(s==='ar'){document.documentElement.lang='ar';document.documentElement.setAttribute('dir','rtl');}else if(s==='en'){document.documentElement.lang='en';document.documentElement.setAttribute('dir','ltr');}else if(s==='fr'){document.documentElement.lang='fr';document.documentElement.setAttribute('dir','ltr');}}catch(e){}})();`,
-          }}
-        />
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -118,7 +124,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="bg-porcelain text-slate-800 antialiased selection:bg-goldPrimary selection:text-white">
-        <LanguageProvider>
+        <LanguageProvider initialLang={lang}>
           <VideoModalProvider>
             <TopBar />
             <Navbar />

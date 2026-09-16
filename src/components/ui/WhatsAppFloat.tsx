@@ -27,7 +27,7 @@ export default function WhatsAppFloat() {
         aria-label="WhatsApp Dr Raghda Zribi"
       >
         <i className="fa-brands fa-whatsapp text-3xl"></i>
-        <span className="floating-tooltip">Contacter le Dr. Zribi (WhatsApp)</span>
+        <span className="floating-tooltip">{t('whatsapp_tooltip')}</span>
       </a>
     </div>
   );

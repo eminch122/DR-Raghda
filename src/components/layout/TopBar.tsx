@@ -87,7 +87,7 @@ export default function TopBar() {
           </div>
           <span className="hidden md:block text-slate-500">|</span>
           <span className="hidden md:block text-slate-300 truncate font-medium">
-            Résidence Cordoba, 2ème étage, App. A2.4 — Les Berges du Lac 2, Tunis
+            {t('topbar_address')}
           </span>
         </div>
 
@@ -99,7 +99,6 @@ export default function TopBar() {
             aria-label={t('topbar_call')}
           >
             <i className="fa-solid fa-phone-volume text-xs"></i>
-            <span>54 670 828</span>
             <bdi dir="ltr" className="inline-block [direction:ltr] [unicode-bidi:isolate]">
               {siteConfig.clinic.phoneDisplay}
             </bdi>
@@ -126,7 +125,7 @@ export default function TopBar() {
             {/* Dropdown Menu */}
             {dropdownOpen && (
               <div className="absolute right-0 mt-1.5 w-36 bg-[#0B2528]/95 backdrop-blur-xl border border-goldPrimary/35 rounded-2xl shadow-2xl p-1.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                {languages.map(({ code, label, name, Flag }) => {
+                {languages.map(({ code, name, Flag }) => {
                   const isSelected = code === currentLang;
                   return (
                     <button

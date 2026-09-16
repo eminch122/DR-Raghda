@@ -152,7 +152,6 @@ export default function Footer() {
                 href={`tel:${siteConfig.clinic.phone}`}
                 className="text-white font-bold hover:text-goldLight text-sm block mt-0.5"
               >
-                {siteConfig.clinic.phoneDisplay}
                 <bdi dir="ltr" className="inline-block [direction:ltr] [unicode-bidi:isolate]">
                   {siteConfig.clinic.phoneDisplay}
                 </bdi>

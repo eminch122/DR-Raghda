@@ -204,7 +204,7 @@ export default function CabinetShowcase() {
             <div className="lg:col-span-5 flex flex-col items-center">
               <div className="relative group w-full max-w-[320px] sm:max-w-[340px] aspect-[9/16] rounded-[36px] overflow-hidden shadow-2xl border-4 border-goldPrimary/40 bg-black">
                 <LazyVideo
-                  src={videoUrl('cabinet-tour.mp4')}
+                  src={videoUrl('Cabinet-Tour.mp4')}
                   poster="/media/cabinet-fauteuil-soins.jpg"
                   className="w-full h-full object-cover"
                 />
@@ -226,7 +226,7 @@ export default function CabinetShowcase() {
                   <div className="text-center pointer-events-auto">
                     <button
                       type="button"
-                      onClick={() => openModal(videoUrl('cabinet-tour.mp4'))}
+                      onClick={() => openModal(videoUrl('Cabinet-Tour.mp4'))}
                       className="w-16 h-16 sm:w-18 sm:h-18 rounded-full bg-goldGradient text-deepSlate flex items-center justify-center shadow-gold mx-auto group-hover:scale-110 transition-transform cursor-pointer"
                       title={t('cabinet_video_play_title')}
                     >
@@ -306,7 +306,7 @@ export default function CabinetShowcase() {
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <button
                   type="button"
-                  onClick={() => openModal(videoUrl('cabinet-tour.mp4'))}
+                  onClick={() => openModal(videoUrl('Cabinet-Tour.mp4'))}
                   className="btn-gold text-sm px-6 py-3 shadow-gold cursor-pointer"
                 >
                   <i className="fa-solid fa-play text-xs rtl:rotate-180"></i>

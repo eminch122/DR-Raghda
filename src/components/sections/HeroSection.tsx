@@ -55,7 +55,7 @@ export default function HeroSection() {
 
               <button
                 type="button"
-                onClick={() => openModal(videoUrl('cabinet-tour.mp4'))}
+                onClick={() => openModal(videoUrl('Cabinet-Tour.mp4'))}
                 className="btn-outline text-base px-7 py-3.5 group cursor-pointer"
               >
                 <i className="fa-solid fa-play text-goldDark group-hover:scale-110 transition-transform"></i>

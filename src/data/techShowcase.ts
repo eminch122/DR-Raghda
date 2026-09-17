@@ -8,7 +8,7 @@ export const techItems: TechItem[] = [
     title: 'Numérisation Intra-Orale Haute Précision',
     description:
       "Notre caméra 3D capture des milliers de points par seconde pour modéliser votre arcade dentaire au micron près en haute définition, sans aucune pâte à empreinte.",
-    videoSrc: videoUrl('scanning-teeth.mp4'),
+    videoSrc: videoUrl('Scanning-Teeth.mp4'),
     features: [
       'Zéro réflexe nauséeux, confort absolu pour le patient',
       'Précision optimale pour couronnes, facettes et prothèses CFAO',

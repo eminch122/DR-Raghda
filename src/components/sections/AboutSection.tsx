@@ -17,7 +17,7 @@ export default function AboutSection() {
             <div className="relative">
               <div className="video-frame-luxury aspect-[3/4] relative">
                 <LazyVideo
-                  src={videoUrl('doctor-timelapse.mp4')}
+                  src={videoUrl('Doctor-Timelapse.mp4')}
                   poster="/media/cabinet-doctor-office.jpg"
                   className="w-full h-full object-cover"
                 />

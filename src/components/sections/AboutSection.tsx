@@ -1,6 +1,7 @@
 'use client';
 
 import { useLanguage } from '@/context/LanguageContext';
+import Reveal from '@/components/ui/Reveal';
 
 export default function AboutSection() {
   const { t } = useLanguage();
@@ -10,7 +11,7 @@ export default function AboutSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left: Real Timelapse Video of Doctor Working */}
-          <div className="lg:col-span-5 order-2 lg:order-1">
+          <Reveal direction="right" className="lg:col-span-5 order-2 lg:order-1">
             <div className="relative">
               <div className="video-frame-luxury aspect-[3/4] relative">
                 <video
@@ -49,10 +50,10 @@ export default function AboutSection() {
                 </div>
               </div>
             </div>
-          </div>
+          </Reveal>
 
           {/* Right: Bio & Practical Information */}
-          <div className="lg:col-span-7 order-1 lg:order-2 space-y-6">
+          <Reveal direction="left" delay={100} className="lg:col-span-7 order-1 lg:order-2 space-y-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-goldLight/20 text-goldDark text-xs font-bold uppercase tracking-wider">
               {t('about_badge')}
             </div>
@@ -74,7 +75,7 @@ export default function AboutSection() {
 
             {/* 4 Verified Pillars Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-              <div className="flex items-start gap-3.5 p-4 rounded-xl bg-porcelain border border-slate-200/80">
+              <div className="flex items-start gap-3.5 p-4 rounded-xl bg-porcelain border border-slate-200/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-medium hover:border-goldPrimary/40">
                 <div className="w-10 h-10 rounded-lg bg-medicalTeal/10 text-medicalTeal flex items-center justify-center flex-shrink-0 text-lg">
                   <i className="fa-solid fa-cube"></i>
                 </div>
@@ -86,7 +87,7 @@ export default function AboutSection() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-3.5 p-4 rounded-xl bg-porcelain border border-slate-200/80">
+              <div className="flex items-start gap-3.5 p-4 rounded-xl bg-porcelain border border-slate-200/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-medium hover:border-goldPrimary/40">
                 <div className="w-10 h-10 rounded-lg bg-medicalTeal/10 text-medicalTeal flex items-center justify-center flex-shrink-0 text-lg">
                   <i className="fa-solid fa-shield-heart"></i>
                 </div>
@@ -98,7 +99,7 @@ export default function AboutSection() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-3.5 p-4 rounded-xl bg-porcelain border border-slate-200/80">
+              <div className="flex items-start gap-3.5 p-4 rounded-xl bg-porcelain border border-slate-200/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-medium hover:border-goldPrimary/40">
                 <div className="w-10 h-10 rounded-lg bg-medicalTeal/10 text-medicalTeal flex items-center justify-center flex-shrink-0 text-lg">
                   <i className="fa-solid fa-tooth"></i>
                 </div>
@@ -110,7 +111,7 @@ export default function AboutSection() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-3.5 p-4 rounded-xl bg-porcelain border border-slate-200/80">
+              <div className="flex items-start gap-3.5 p-4 rounded-xl bg-porcelain border border-slate-200/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-medium hover:border-goldPrimary/40">
                 <div className="w-10 h-10 rounded-lg bg-medicalTeal/10 text-medicalTeal flex items-center justify-center flex-shrink-0 text-lg">
                   <i className="fa-solid fa-pump-medical"></i>
                 </div>
@@ -129,7 +130,7 @@ export default function AboutSection() {
                 <span>{t('about_cta')}</span>
               </a>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

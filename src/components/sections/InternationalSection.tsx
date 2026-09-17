@@ -2,6 +2,7 @@
 
 import { useLanguage } from '@/context/LanguageContext';
 import { siteConfig } from '@/data/siteConfig';
+import Reveal from '@/components/ui/Reveal';
 
 export default function InternationalSection() {
   const { t } = useLanguage();
@@ -12,7 +13,7 @@ export default function InternationalSection() {
   return (
     <section id="international" className="py-20 md:py-28 bg-deepSlate text-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="tourism-card">
+        <Reveal className="tourism-card">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-goldPrimary/20 text-goldLight border border-goldPrimary/30 text-xs font-bold uppercase tracking-wider">
@@ -26,19 +27,19 @@ export default function InternationalSection() {
               <p className="text-slate-300 leading-relaxed">{t('tourism_subtitle')}</p>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-                <div className="p-4 rounded-xl bg-white/5 border border-white/10">
+                <div className="p-4 rounded-xl bg-white/5 border border-white/10 transition-all duration-300 hover:bg-white/10 hover:border-goldPrimary/40 hover:-translate-y-0.5">
                   <div className="text-goldPrimary font-serif text-2xl font-bold mb-1">{t('tourism_h1_val')}</div>
                   <div className="text-xs text-slate-300">
                     {t('tourism_h1_lbl')}
                   </div>
                 </div>
-                <div className="p-4 rounded-xl bg-white/5 border border-white/10">
+                <div className="p-4 rounded-xl bg-white/5 border border-white/10 transition-all duration-300 hover:bg-white/10 hover:border-goldPrimary/40 hover:-translate-y-0.5">
                   <div className="text-goldPrimary font-serif text-2xl font-bold mb-1">{t('tourism_h2_val')}</div>
                   <div className="text-xs text-slate-300">
                     {t('tourism_h2_lbl')}
                   </div>
                 </div>
-                <div className="p-4 rounded-xl bg-white/5 border border-white/10">
+                <div className="p-4 rounded-xl bg-white/5 border border-white/10 transition-all duration-300 hover:bg-white/10 hover:border-goldPrimary/40 hover:-translate-y-0.5">
                   <div className="text-goldPrimary font-serif text-2xl font-bold mb-1">{t('tourism_h3_val')}</div>
                   <div className="text-xs text-slate-300">
                     {t('tourism_h3_lbl')}
@@ -92,7 +93,7 @@ export default function InternationalSection() {
               </ul>
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

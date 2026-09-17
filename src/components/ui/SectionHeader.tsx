@@ -1,3 +1,5 @@
+import Reveal from './Reveal';
+
 interface SectionHeaderProps {
   badge: string;
   title: string;
@@ -14,7 +16,7 @@ export default function SectionHeader({
   className = '',
 }: SectionHeaderProps) {
   return (
-    <div className={`text-center max-w-3xl mx-auto mb-16 space-y-3 ${className}`}>
+    <Reveal className={`text-center max-w-3xl mx-auto mb-16 space-y-3 ${className}`}>
       <div
         className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider ${
           dark
@@ -34,6 +36,6 @@ export default function SectionHeader({
       {subtitle && (
         <p className={`text-base ${dark ? 'text-slate-300' : 'text-slate-600'}`}>{subtitle}</p>
       )}
-    </div>
+    </Reveal>
   );
 }

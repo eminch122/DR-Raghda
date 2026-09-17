@@ -2,6 +2,7 @@
 
 import { useLanguage } from '@/context/LanguageContext';
 import { useVideoModal } from '@/context/VideoModalContext';
+import Reveal from '@/components/ui/Reveal';
 
 export default function HeroSection() {
   const { t } = useLanguage();
@@ -17,25 +18,29 @@ export default function HeroSection() {
           {/* Left Hero Content */}
           <div className="lg:col-span-7 space-y-7 text-center lg:text-left">
             {/* Quality Badge */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white border border-goldPrimary/30 shadow-subtle">
+            <Reveal className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white border border-goldPrimary/30 shadow-subtle">
               <span className="w-2 h-2 rounded-full bg-goldDark"></span>
               <span className="text-xs sm:text-sm font-semibold text-deepSlate">
                 {t('hero_badge')}
               </span>
-            </div>
+            </Reveal>
 
             {/* Main Headline */}
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-deepSlate leading-[1.15] tracking-tight">
-              {t('hero_title')}
-            </h1>
+            <Reveal delay={100} as="span" className="block">
+              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-deepSlate leading-[1.15] tracking-tight">
+                {t('hero_title')}
+              </h1>
+            </Reveal>
 
             {/* Subtitle */}
-            <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
-              {t('hero_subtitle')}
-            </p>
+            <Reveal delay={200} as="span" className="block">
+              <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                {t('hero_subtitle')}
+              </p>
+            </Reveal>
 
             {/* Dual Action Buttons */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+            <Reveal delay={300} className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
               <a href="#contact" className="btn-primary text-base px-8 py-4 shadow-xl">
                 <i className="fa-regular fa-calendar-check text-goldPrimary"></i>
                 <span>{t('hero_cta_book')}</span>
@@ -49,11 +54,11 @@ export default function HeroSection() {
                 <i className="fa-solid fa-play text-goldDark group-hover:scale-110 transition-transform"></i>
                 <span>{t('hero_cta_tour')}</span>
               </button>
-            </div>
+            </Reveal>
 
             {/* Verified Clinical Highlights Strip */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 pt-8 border-t border-slate-200/80">
-              <div className="p-3.5 bg-white/80 rounded-xl border border-slate-200/70 shadow-sm flex flex-col justify-center">
+            <Reveal delay={400} className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 pt-8 border-t border-slate-200/80">
+              <div className="p-3.5 bg-white/80 rounded-xl border border-slate-200/70 shadow-sm flex flex-col justify-center transition-all duration-300 hover:-translate-y-1 hover:shadow-medium hover:border-goldPrimary/40">
                 <div className="flex items-center gap-2 font-serif font-bold text-lg sm:text-xl text-deepSlate leading-none">
                   <i className="fa-solid fa-cube text-medicalTeal text-base w-5 text-center flex-shrink-0"></i>
                   <span>{t('hero_highlight_scan')}</span>
@@ -63,7 +68,7 @@ export default function HeroSection() {
                 </div>
               </div>
 
-              <div className="p-3.5 bg-white/80 rounded-xl border border-slate-200/70 shadow-sm flex flex-col justify-center">
+              <div className="p-3.5 bg-white/80 rounded-xl border border-slate-200/70 shadow-sm flex flex-col justify-center transition-all duration-300 hover:-translate-y-1 hover:shadow-medium hover:border-goldPrimary/40">
                 <div className="flex items-center gap-2 font-serif font-bold text-lg sm:text-xl text-medicalTeal leading-none">
                   <i className="fa-solid fa-wand-magic-sparkles text-goldDark text-base w-5 text-center flex-shrink-0"></i>
                   <span>{t('hero_highlight_flash')}</span>
@@ -73,7 +78,7 @@ export default function HeroSection() {
                 </div>
               </div>
 
-              <div className="p-3.5 bg-white/80 rounded-xl border border-slate-200/70 shadow-sm flex flex-col justify-center">
+              <div className="p-3.5 bg-white/80 rounded-xl border border-slate-200/70 shadow-sm flex flex-col justify-center transition-all duration-300 hover:-translate-y-1 hover:shadow-medium hover:border-goldPrimary/40">
                 <div className="flex items-center gap-2 font-serif font-bold text-lg sm:text-xl text-deepSlate leading-none">
                   <i className="fa-solid fa-teeth text-medicalTeal text-base w-5 text-center flex-shrink-0"></i>
                   <span>{t('hero_highlight_aligners')}</span>
@@ -83,7 +88,7 @@ export default function HeroSection() {
                 </div>
               </div>
 
-              <div className="p-3.5 bg-white/80 rounded-xl border border-slate-200/70 shadow-sm flex flex-col justify-center">
+              <div className="p-3.5 bg-white/80 rounded-xl border border-slate-200/70 shadow-sm flex flex-col justify-center transition-all duration-300 hover:-translate-y-1 hover:shadow-medium hover:border-goldPrimary/40">
                 <div className="flex items-center gap-2 font-serif font-bold text-lg sm:text-xl text-goldDark leading-none">
                   <i className="fa-solid fa-tooth text-rose-500 text-base w-5 text-center flex-shrink-0"></i>
                   <span>{t('hero_highlight_implants')}</span>
@@ -92,11 +97,11 @@ export default function HeroSection() {
                   {t('hero_highlight_implants_desc')}
                 </div>
               </div>
-            </div>
+            </Reveal>
           </div>
 
           {/* Right Hero Video Portrait Frame */}
-          <div className="lg:col-span-5 relative">
+          <Reveal direction="left" delay={200} className="lg:col-span-5 relative">
             <div className="relative mx-auto max-w-md lg:max-w-none">
               {/* Luxury Gold Outer Border Glow */}
               <div className="absolute -inset-2 bg-gradient-to-r from-goldPrimary via-medicalTeal to-goldPrimary rounded-3xl opacity-30 blur-lg animate-pulse"></div>
@@ -136,7 +141,7 @@ export default function HeroSection() {
                 </div>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

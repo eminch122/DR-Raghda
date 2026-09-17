@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { siteConfig } from '@/data/siteConfig';
+import Reveal from '@/components/ui/Reveal';
 
 export default function SimulatorSection() {
   const { t } = useLanguage();
@@ -44,7 +45,7 @@ export default function SimulatorSection() {
     <section id="simulator" className="py-20 md:py-28 bg-porcelain border-t border-slate-200/60 relative">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-12 space-y-3">
+        <Reveal className="text-center mb-12 space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-goldLight/30 text-goldDark text-xs font-bold uppercase tracking-wider">
             {t('sim_badge')}
           </div>
@@ -52,10 +53,10 @@ export default function SimulatorSection() {
             {t('sim_title')}
           </h2>
           <p className="text-slate-600 text-base">{t('sim_subtitle')}</p>
-        </div>
+        </Reveal>
 
         {/* Simulator Card */}
-        <div className="bg-white border border-goldPrimary/30 rounded-3xl p-6 sm:p-10 shadow-xl relative overflow-hidden">
+        <Reveal delay={150} className="bg-white border border-goldPrimary/30 rounded-3xl p-6 sm:p-10 shadow-xl relative overflow-hidden">
           {/* Progress Bar */}
           <div className="w-full bg-slate-200 h-2 rounded-full mb-8 overflow-hidden">
             <div
@@ -67,7 +68,7 @@ export default function SimulatorSection() {
 
           {/* STEP 1: Main Goal */}
           {step === 1 && (
-            <div id="step1" className="simulator-step active space-y-6">
+            <div id="step1" className="simulator-step active space-y-6 animate-in fade-in slide-in-from-right-4 duration-400">
               <div className="flex items-center justify-between">
                 <span className="text-xs uppercase font-bold text-goldDark">{t('sim_step_1_of_3')}</span>
                 <span className="text-xs font-semibold text-slate-500">{t('sim_step_1_label')}</span>
@@ -141,7 +142,7 @@ export default function SimulatorSection() {
 
           {/* STEP 2: Timeline */}
           {step === 2 && (
-            <div id="step2" className="simulator-step active space-y-6">
+            <div id="step2" className="simulator-step active space-y-6 animate-in fade-in slide-in-from-right-4 duration-400">
               <div className="flex items-center justify-between">
                 <span className="text-xs uppercase font-bold text-goldDark">{t('sim_step_2_of_3')}</span>
                 <span className="text-xs font-semibold text-slate-500">{t('sim_step_2_label')}</span>
@@ -215,7 +216,7 @@ export default function SimulatorSection() {
 
           {/* STEP 3: Radio Panoramique */}
           {step === 3 && (
-            <div id="step3" className="simulator-step active space-y-6">
+            <div id="step3" className="simulator-step active space-y-6 animate-in fade-in slide-in-from-right-4 duration-400">
               <div className="flex items-center justify-between">
                 <span className="text-xs uppercase font-bold text-goldDark">{t('sim_step_3_of_3')}</span>
                 <span className="text-xs font-semibold text-slate-500">{t('sim_step_3_label')}</span>
@@ -259,7 +260,7 @@ export default function SimulatorSection() {
 
           {/* STEP 4: Summary & Instant Dispatch */}
           {step === 4 && (
-            <div id="step4" className="simulator-step active space-y-6">
+            <div id="step4" className="simulator-step active space-y-6 animate-in fade-in slide-in-from-right-4 duration-400">
               <div className="text-center space-y-2">
                 <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto text-2xl">
                   <i className="fa-solid fa-check"></i>
@@ -348,7 +349,7 @@ export default function SimulatorSection() {
               </div>
             </div>
           )}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

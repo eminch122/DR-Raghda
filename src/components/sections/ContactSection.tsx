@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
 import { siteConfig } from '@/data/siteConfig';
 import SectionHeader from '@/components/ui/SectionHeader';
+import Reveal from '@/components/ui/Reveal';
 
 const serviceOptions = [
   { key: 'consultation', labelKey: 'contact_service_consultation' },
@@ -81,11 +82,11 @@ export default function ContactSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Left: Online Booking Form */}
-          <div className="lg:col-span-7 bg-porcelain p-8 sm:p-10 rounded-3xl border border-goldPrimary/30 shadow-lg">
+          <Reveal direction="right" className="lg:col-span-7 bg-porcelain p-8 sm:p-10 rounded-3xl border border-goldPrimary/30 shadow-lg">
             {showSuccess && (
               <div
                 id="bookingSuccess"
-                className="mb-6 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm flex items-center gap-3"
+                className="mb-6 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm flex items-center gap-3 animate-in fade-in slide-in-from-top-2 duration-400"
               >
                 <i className="fa-solid fa-circle-check text-xl text-emerald-600"></i>
                 <div>
@@ -212,10 +213,10 @@ export default function ContactSection() {
                 <span>{t('contact_form_submit')}</span>
               </button>
             </form>
-          </div>
+          </Reveal>
 
           {/* Right: Clinic Information Card */}
-          <div className="lg:col-span-5 space-y-6">
+          <Reveal direction="left" delay={100} className="lg:col-span-5 space-y-6">
             <div className="bg-deepSlate text-white p-8 rounded-3xl border border-goldPrimary/30 space-y-6 shadow-xl">
               <div className="flex items-center gap-3">
                 <div className="relative h-10 w-32">
@@ -318,7 +319,7 @@ export default function ContactSection() {
                 </a>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

@@ -165,10 +165,15 @@ export default function Navbar() {
           <button
             id="mobileMenuToggle"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="min-[1150px]:hidden p-2.5 rounded-xl text-slate-700 hover:bg-slate-100 focus:outline-none"
+            className="min-[1150px]:hidden p-2.5 rounded-xl text-slate-700 hover:bg-slate-100 focus:outline-none transition-transform duration-300"
             aria-label="Ouvrir le menu"
+            aria-expanded={mobileMenuOpen}
           >
-            <i className="fa-solid fa-bars-staggered text-2xl"></i>
+            <i
+              className={`fa-solid text-2xl transition-transform duration-300 ${
+                mobileMenuOpen ? 'fa-xmark rotate-90' : 'fa-bars-staggered rotate-0'
+              }`}
+            ></i>
           </button>
         </div>
       </div>
@@ -177,7 +182,7 @@ export default function Navbar() {
       {mobileMenuOpen && (
         <div
           id="mobileMenu"
-          className="min-[1150px]:hidden bg-white/98 border-b border-goldPrimary/20 px-6 py-6 space-y-4 shadow-xl backdrop-blur-lg"
+          className="min-[1150px]:hidden bg-white/98 border-b border-goldPrimary/20 px-6 py-6 space-y-4 shadow-xl backdrop-blur-lg animate-in fade-in slide-in-from-top-2 duration-250"
         >
           <div className="space-y-1">
             <div className="text-[0.72rem] uppercase tracking-wider font-bold text-goldDark px-2 py-1">

@@ -5,6 +5,8 @@ import { useLanguage } from '@/context/LanguageContext';
 import { siteConfig } from '@/data/siteConfig';
 import { GoogleLogo } from '@/components/ui/Icons';
 import { curatedReviews, Testimonial } from '@/data/reviews';
+import Reveal from '@/components/ui/Reveal';
+import { useCountUp } from '@/hooks/useCountUp';
 
 interface ReviewsApiResponse {
   rating?: number;
@@ -41,18 +43,21 @@ export default function ReviewsSection() {
       });
   }, []);
 
-  const rating = apiData?.rating ? Number(apiData.rating).toFixed(1) : siteConfig.google.overallRating;
+  const ratingNum = apiData?.rating ? Number(apiData.rating) : Number(siteConfig.google.overallRating);
   const reviewCount = apiData?.userRatingCount || siteConfig.google.totalReviewsCount;
   const reviewsLink = apiData?.googleMapsLinks?.reviewsUri || siteConfig.google.allReviewsUrl;
   const writeLink = apiData?.googleMapsLinks?.writeAReviewUri || siteConfig.google.writeReviewUrl;
 
   const testimonialsToDisplay: Testimonial[] = apiData?.testimonials || curatedReviews;
 
+  const ratingCount = useCountUp(ratingNum, 1000, 1);
+  const reviewsCount = useCountUp(reviewCount, 1400, 0);
+
   return (
     <section id="reviews" className="py-20 md:py-28 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Reviews Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
+        <Reveal className="text-center max-w-3xl mx-auto mb-14 space-y-4">
           <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-porcelain border border-goldPrimary/30 shadow-sm">
             <GoogleLogo className="w-4 h-4" />
             <span className="text-xs font-bold text-deepSlate">
@@ -69,8 +74,12 @@ export default function ReviewsSection() {
           {/* Rating Summary Bar */}
           <div className="inline-flex flex-wrap items-center justify-center gap-4 p-4 rounded-2xl bg-porcelain border border-slate-200/80 mt-2 shadow-sm">
             <div className="flex items-center gap-2">
-              <span id="googleOverallScore" className="font-serif font-bold text-2xl text-deepSlate">
-                {rating}
+              <span
+                id="googleOverallScore"
+                ref={ratingCount.ref}
+                className="font-serif font-bold text-2xl text-deepSlate tabular-nums"
+              >
+                {ratingCount.display}
               </span>
               <div className="stars-gold">
                 <i className="fa-solid fa-star"></i>
@@ -84,16 +93,21 @@ export default function ReviewsSection() {
             <div className="text-xs font-semibold text-slate-600 flex items-center gap-1.5">
               <i className="fa-solid fa-shield-halved text-emerald-600"></i>
               <span id="googleReviewsCountText">
-                <span className="pulse-dot mr-1"></span> {reviewCount} {t('reviews_verified_count_text')}
+                <span className="pulse-dot mr-1"></span>
+                <span ref={reviewsCount.ref} className="tabular-nums">
+                  {reviewsCount.display}
+                </span>{' '}
+                {t('reviews_verified_count_text')}
               </span>
             </div>
           </div>
-        </div>
+        </Reveal>
 
         {/* Real Testimonial Cards Grid */}
         <div id="googleReviewsGrid" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {testimonialsToDisplay.slice(0, 6).map((rev) => (
-            <div key={rev.id} className="google-review-card group hover:border-goldPrimary transition-all duration-300">
+          {testimonialsToDisplay.slice(0, 6).map((rev, index) => (
+            <Reveal key={rev.id} delay={Math.min(index * 80, 320)}>
+            <div className="google-review-card group hover:border-goldPrimary transition-all duration-300">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
                   <div
@@ -153,6 +167,7 @@ export default function ReviewsSection() {
                 </a>
               </div>
             </div>
+            </Reveal>
           ))}
         </div>
 

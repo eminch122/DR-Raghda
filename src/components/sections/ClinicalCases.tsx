@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { clinicalCases } from '@/data/cases';
 import SectionHeader from '@/components/ui/SectionHeader';
+import Reveal from '@/components/ui/Reveal';
 
 export default function ClinicalCases() {
   const { t } = useLanguage();
@@ -88,21 +89,22 @@ export default function ClinicalCases() {
             const isActive = c.id === activeCaseId;
             const tabLabel = t(`case_${index + 1}_tab`) || c.tabLabel;
             return (
-              <button
-                key={c.id}
-                type="button"
-                onClick={() => setActiveCaseId(c.id)}
-                className={`case-tab-btn ${isActive ? 'active' : ''}`}
-              >
-                <i className={`fa-solid fa-${c.icon} text-xs`}></i>
-                <span>{tabLabel}</span>
-              </button>
+              <Reveal key={c.id} delay={Math.min(index * 60, 300)}>
+                <button
+                  type="button"
+                  onClick={() => setActiveCaseId(c.id)}
+                  className={`case-tab-btn ${isActive ? 'active' : ''}`}
+                >
+                  <i className={`fa-solid fa-${c.icon} text-xs`}></i>
+                  <span>{tabLabel}</span>
+                </button>
+              </Reveal>
             );
           })}
         </div>
 
         {/* Interactive Split Slider Container */}
-        <div className="max-w-5xl mx-auto">
+        <Reveal className="max-w-5xl mx-auto">
           <div
             ref={containerRef}
             id="comparisonContainer"
@@ -180,7 +182,7 @@ export default function ClinicalCases() {
 
           {/* Case Description & Notes */}
           <div className="mt-6 p-6 rounded-2xl bg-porcelain border border-goldPrimary/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div>
+            <div key={activeCaseId} className="animate-in fade-in slide-in-from-bottom-1 duration-400">
               <h3 id="caseTitle" className="font-serif font-bold text-lg text-deepSlate">
                 {currentTitle}
               </h3>
@@ -193,7 +195,7 @@ export default function ClinicalCases() {
               <i className="fa-solid fa-chevron-right text-goldPrimary text-xs"></i>
             </a>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { siteConfig } from '@/data/siteConfig';
 import SectionHeader from '@/components/ui/SectionHeader';
+import Reveal from '@/components/ui/Reveal';
 
 export default function LocationSection() {
   const { t } = useLanguage();
@@ -33,7 +34,7 @@ export default function LocationSection() {
         {/* Google Maps & Directions Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Left: High-End Interactive Map Container (8 cols) */}
-          <div className="lg:col-span-7 xl:col-span-8 flex flex-col">
+          <Reveal direction="right" className="lg:col-span-7 xl:col-span-8 flex flex-col">
             <div className="relative rounded-3xl overflow-hidden shadow-elevated border-2 border-goldPrimary/30 bg-slate-100 h-full min-h-[420px] sm:min-h-[480px] group">
               {/* Google Maps Embed */}
               <iframe
@@ -64,10 +65,10 @@ export default function LocationSection() {
                 <span>{t('location_enlarge_map')}</span>
               </a>
             </div>
-          </div>
+          </Reveal>
 
           {/* Right: Location Details & Route Actions Card (5 cols on lg, 4 on xl) */}
-          <div className="lg:col-span-5 xl:col-span-4 flex flex-col justify-between p-6 sm:p-8 rounded-3xl bg-porcelain border-2 border-goldPrimary/30 shadow-elevated space-y-6">
+          <Reveal direction="left" delay={100} className="lg:col-span-5 xl:col-span-4 flex flex-col justify-between p-6 sm:p-8 rounded-3xl bg-porcelain border-2 border-goldPrimary/30 shadow-elevated space-y-6">
             <div className="space-y-5">
               {/* Header */}
               <div className="flex items-center gap-3.5">
@@ -164,7 +165,7 @@ export default function LocationSection() {
                 <span>{t('location_waze_btn')}</span>
               </a>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

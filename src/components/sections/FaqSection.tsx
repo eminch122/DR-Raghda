@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { faqItems } from '@/data/faq';
 import SectionHeader from '@/components/ui/SectionHeader';
+import Reveal from '@/components/ui/Reveal';
 
 export default function FaqSection() {
   const { t } = useLanguage();
@@ -30,7 +31,8 @@ export default function FaqSection() {
             const answer = t(`faq_a${index + 1}`) || item.answer;
 
             return (
-              <div key={index} className={`faq-item ${isOpen ? 'active' : ''}`}>
+              <Reveal key={index} delay={Math.min(index * 60, 300)}>
+              <div className={`faq-item ${isOpen ? 'active' : ''}`}>
                 <button
                   type="button"
                   onClick={() => toggleIndex(index)}
@@ -44,16 +46,11 @@ export default function FaqSection() {
                     }`}
                   ></i>
                 </button>
-                <div
-                  className="faq-content transition-all duration-300"
-                  style={{
-                    maxHeight: isOpen ? '500px' : '0px',
-                    paddingBottom: isOpen ? '24px' : '0px',
-                  }}
-                >
+                <div className="faq-content">
                   <p>{answer}</p>
                 </div>
               </div>
+              </Reveal>
             );
           })}
         </div>

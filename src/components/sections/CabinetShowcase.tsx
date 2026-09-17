@@ -7,6 +7,7 @@ import { clinicPhotos } from '@/data/clinicGallery';
 import { useLanguage } from '@/context/LanguageContext';
 import { useVideoModal } from '@/context/VideoModalContext';
 import SectionHeader from '@/components/ui/SectionHeader';
+import Reveal from '@/components/ui/Reveal';
 
 export default function CabinetShowcase() {
   const { t } = useLanguage();
@@ -53,7 +54,7 @@ export default function CabinetShowcase() {
         {/* ======================================================== */}
         {/* BLOCK 1: FULL-WIDTH INTERACTIVE HIGH-DEFINITION GALLERY */}
         {/* ======================================================== */}
-        <div className="mb-14 space-y-4">
+        <Reveal className="mb-14 space-y-4">
           {/* Main Photo Cinema Stage */}
           <div className="relative group bg-[#0B2528] rounded-3xl overflow-hidden shadow-2xl border-2 border-goldPrimary/30 w-full h-[360px] sm:h-[440px] md:h-[520px] lg:h-[560px]">
             {/* Shimmer skeleton placeholder when current photo is still loading */}
@@ -192,12 +193,12 @@ export default function CabinetShowcase() {
               );
             })}
           </div>
-        </div>
+        </Reveal>
 
         {/* ======================================================== */}
         {/* BLOCK 2: DEDICATED IMMERSIVE VIDEO TOUR EXPERIENCE CARD */}
         {/* ======================================================== */}
-        <div className="mb-14 rounded-3xl bg-gradient-to-br from-[#0B2528] via-[#0E3337] to-[#071C1E] border-2 border-goldPrimary/35 p-6 sm:p-10 lg:p-12 shadow-2xl relative overflow-hidden text-white">
+        <Reveal className="mb-14 rounded-3xl bg-gradient-to-br from-[#0B2528] via-[#0E3337] to-[#071C1E] border-2 border-goldPrimary/35 p-6 sm:p-10 lg:p-12 shadow-2xl relative overflow-hidden text-white">
           {/* Decorative ambient background lights */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-goldPrimary/10 rounded-full blur-3xl pointer-events-none"></div>
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-medicalTeal/30 rounded-full blur-3xl pointer-events-none"></div>
@@ -332,60 +333,68 @@ export default function CabinetShowcase() {
               </div>
             </div>
           </div>
-        </div>
+        </Reveal>
 
         {/* ======================================================== */}
         {/* BLOCK 3: 4 PRACTICAL VISITING ACCESS PILLARS             */}
         {/* ======================================================== */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-start gap-4 hover:shadow-md transition-shadow">
-            <div className="w-11 h-11 rounded-xl bg-medicalTeal/10 text-medicalTeal flex items-center justify-center flex-shrink-0 text-xl">
-              <i className="fa-solid fa-building"></i>
+          <Reveal delay={0}>
+            <div className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-start gap-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-medium hover:border-goldPrimary/40">
+              <div className="w-11 h-11 rounded-xl bg-medicalTeal/10 text-medicalTeal flex items-center justify-center flex-shrink-0 text-xl">
+                <i className="fa-solid fa-building"></i>
+              </div>
+              <div>
+                <h4 className="font-bold text-sm text-deepSlate">{t('cabinet_p1_title')}</h4>
+                <p className="text-xs text-slate-500 mt-1">
+                  {t('cabinet_p1_desc')}
+                </p>
+              </div>
             </div>
-            <div>
-              <h4 className="font-bold text-sm text-deepSlate">{t('cabinet_p1_title')}</h4>
-              <p className="text-xs text-slate-500 mt-1">
-                {t('cabinet_p1_desc')}
-              </p>
-            </div>
-          </div>
+          </Reveal>
 
-          <div className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-start gap-4 hover:shadow-md transition-shadow">
-            <div className="w-11 h-11 rounded-xl bg-medicalTeal/10 text-medicalTeal flex items-center justify-center flex-shrink-0 text-xl">
-              <i className="fa-solid fa-shield-virus"></i>
+          <Reveal delay={80}>
+            <div className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-start gap-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-medium hover:border-goldPrimary/40">
+              <div className="w-11 h-11 rounded-xl bg-medicalTeal/10 text-medicalTeal flex items-center justify-center flex-shrink-0 text-xl">
+                <i className="fa-solid fa-shield-virus"></i>
+              </div>
+              <div>
+                <h4 className="font-bold text-sm text-deepSlate">{t('cabinet_p2_title')}</h4>
+                <p className="text-xs text-slate-500 mt-1">
+                  {t('cabinet_p2_desc')}
+                </p>
+              </div>
             </div>
-            <div>
-              <h4 className="font-bold text-sm text-deepSlate">{t('cabinet_p2_title')}</h4>
-              <p className="text-xs text-slate-500 mt-1">
-                {t('cabinet_p2_desc')}
-              </p>
-            </div>
-          </div>
+          </Reveal>
 
-          <div className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-start gap-4 hover:shadow-md transition-shadow">
-            <div className="w-11 h-11 rounded-xl bg-medicalTeal/10 text-medicalTeal flex items-center justify-center flex-shrink-0 text-xl">
-              <i className="fa-solid fa-square-parking"></i>
+          <Reveal delay={160}>
+            <div className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-start gap-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-medium hover:border-goldPrimary/40">
+              <div className="w-11 h-11 rounded-xl bg-medicalTeal/10 text-medicalTeal flex items-center justify-center flex-shrink-0 text-xl">
+                <i className="fa-solid fa-square-parking"></i>
+              </div>
+              <div>
+                <h4 className="font-bold text-sm text-deepSlate">{t('cabinet_p3_title')}</h4>
+                <p className="text-xs text-slate-500 mt-1">
+                  {t('cabinet_p3_desc')}
+                </p>
+              </div>
             </div>
-            <div>
-              <h4 className="font-bold text-sm text-deepSlate">{t('cabinet_p3_title')}</h4>
-              <p className="text-xs text-slate-500 mt-1">
-                {t('cabinet_p3_desc')}
-              </p>
-            </div>
-          </div>
+          </Reveal>
 
-          <div className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-start gap-4 hover:shadow-md transition-shadow">
-            <div className="w-11 h-11 rounded-xl bg-medicalTeal/10 text-medicalTeal flex items-center justify-center flex-shrink-0 text-xl">
-              <i className="fa-solid fa-clock"></i>
+          <Reveal delay={240}>
+            <div className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-start gap-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-medium hover:border-goldPrimary/40">
+              <div className="w-11 h-11 rounded-xl bg-medicalTeal/10 text-medicalTeal flex items-center justify-center flex-shrink-0 text-xl">
+                <i className="fa-solid fa-clock"></i>
+              </div>
+              <div>
+                <h4 className="font-bold text-sm text-deepSlate">{t('cabinet_p4_title')}</h4>
+                <p className="text-xs text-slate-500 mt-1">
+                  {t('cabinet_p4_desc')}<br />
+                  {t('cabinet_appointment_only')}
+                </p>
+              </div>
             </div>
-            <div>
-              <h4 className="font-bold text-sm text-deepSlate">{t('cabinet_p4_title')}</h4>
-              <p className="text-xs text-slate-500 mt-1">
-                {t('cabinet_p4_desc')}<br />
-                {t('cabinet_appointment_only')}
-              </p>
-            </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

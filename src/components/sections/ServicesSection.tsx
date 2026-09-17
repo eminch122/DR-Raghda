@@ -3,6 +3,7 @@
 import { useLanguage } from '@/context/LanguageContext';
 import { services } from '@/data/services';
 import SectionHeader from '@/components/ui/SectionHeader';
+import Reveal from '@/components/ui/Reveal';
 
 export default function ServicesSection() {
   const { t } = useLanguage();
@@ -26,9 +27,33 @@ export default function ServicesSection() {
 
             if (service.isEmergency) {
               return (
-                <div key={index} className="service-card group border-rose-200 bg-rose-50/20">
-                  <div className="service-icon-wrapper text-rose-600 bg-rose-100">
-                    <i className="fa-solid fa-kit-medical"></i>
+                <Reveal key={index} delay={Math.min(index * 80, 320)} className="h-full">
+                  <div className="service-card group border-rose-200 bg-rose-50/20">
+                    <div className="service-icon-wrapper text-rose-600 bg-rose-100">
+                      <i className="fa-solid fa-kit-medical"></i>
+                    </div>
+                    <h3 className="font-serif font-bold text-xl text-deepSlate mb-2.5">
+                      {title}
+                    </h3>
+                    <p className="text-sm text-slate-600 leading-relaxed mb-6 flex-grow">
+                      {description}
+                    </p>
+                    <div className="pt-4 border-t border-rose-200 flex items-center justify-between text-xs font-bold text-rose-600">
+                      <span>{category}</span>
+                      <a href={service.ctaHref} className="hover:underline flex items-center gap-1">
+                        {cta} <i className="fa-solid fa-phone"></i>
+                      </a>
+                    </div>
+                  </div>
+                </Reveal>
+              );
+            }
+
+            return (
+              <Reveal key={index} delay={Math.min(index * 80, 320)} className="h-full">
+                <div className="service-card group">
+                  <div className="service-icon-wrapper">
+                    <i className={`fa-solid fa-${service.icon}`}></i>
                   </div>
                   <h3 className="font-serif font-bold text-xl text-deepSlate mb-2.5">
                     {title}
@@ -36,34 +61,14 @@ export default function ServicesSection() {
                   <p className="text-sm text-slate-600 leading-relaxed mb-6 flex-grow">
                     {description}
                   </p>
-                  <div className="pt-4 border-t border-rose-200 flex items-center justify-between text-xs font-bold text-rose-600">
+                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-medicalTeal">
                     <span>{category}</span>
-                    <a href={service.ctaHref} className="hover:underline flex items-center gap-1">
-                      {cta} <i className="fa-solid fa-phone"></i>
+                    <a href={service.ctaHref} className="hover:text-goldDark flex items-center gap-1">
+                      {cta} <i className="fa-solid fa-arrow-right"></i>
                     </a>
                   </div>
                 </div>
-              );
-            }
-
-            return (
-              <div key={index} className="service-card group">
-                <div className="service-icon-wrapper">
-                  <i className={`fa-solid fa-${service.icon}`}></i>
-                </div>
-                <h3 className="font-serif font-bold text-xl text-deepSlate mb-2.5">
-                  {title}
-                </h3>
-                <p className="text-sm text-slate-600 leading-relaxed mb-6 flex-grow">
-                  {description}
-                </p>
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-medicalTeal">
-                  <span>{category}</span>
-                  <a href={service.ctaHref} className="hover:text-goldDark flex items-center gap-1">
-                    {cta} <i className="fa-solid fa-arrow-right"></i>
-                  </a>
-                </div>
-              </div>
+              </Reveal>
             );
           })}
         </div>

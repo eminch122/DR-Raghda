@@ -1024,15 +1024,19 @@ section {
 .faq-content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, transform 0.3s ease, padding-bottom 0.4s ease;
   padding: 0 24px;
   color: var(--text-muted);
 }
 
 .faq-item.active .faq-content {
   max-height: 500px;
+  opacity: 1;
+  transform: translateY(0);
   padding-bottom: 24px;
-  transition: max-height 0.4s ease-in-out;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease 0.08s, transform 0.4s ease 0.08s, padding-bottom 0.4s ease;
 }
 
 .faq-item.active .faq-icon {
@@ -1259,4 +1263,20 @@ section {
 
 .shadow-elevated {
   box-shadow: var(--shadow-elevated);
+}
+
+/* ==========================================================================
+   MOTION ACCESSIBILITY
+   Users who ask the OS for reduced motion still see every element (opacity
+   settles at 1 immediately), they just skip the animated transition.
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

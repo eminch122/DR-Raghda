@@ -11,7 +11,8 @@ export default function WhatsAppFloat() {
       {/* Appointment Floating Bubble - Visible under 1360px */}
       <a
         href="#contact"
-        className="appointment-float"
+        className="appointment-float animate-in fade-in zoom-in-50 duration-500 fill-mode-backwards"
+        style={{ animationDelay: '900ms' }}
         aria-label={t('hero_cta_book')}
       >
         <i className="fa-regular fa-calendar-check text-2xl text-goldPrimary"></i>
@@ -23,7 +24,8 @@ export default function WhatsAppFloat() {
         href={siteConfig.clinic.whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="whatsapp-float"
+        className="whatsapp-float animate-in fade-in zoom-in-50 duration-500 fill-mode-backwards"
+        style={{ animationDelay: '700ms' }}
         aria-label="WhatsApp Dr Raghda Zribi"
       >
         <i className="fa-brands fa-whatsapp text-3xl"></i>

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { techItems } from '@/data/techShowcase';
 import SectionHeader from '@/components/ui/SectionHeader';
+import Reveal from '@/components/ui/Reveal';
 
 export default function TechShowcase() {
   const { t } = useLanguage();
@@ -43,35 +44,35 @@ export default function TechShowcase() {
             const summary = t(`tech_${num}_summary`);
 
             return (
-              <div
-                key={tech.key}
-                onClick={() => setActiveKey(tech.key)}
-                className={`tech-card-item ${isActive ? 'active' : ''}`}
-              >
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-xl bg-goldPrimary/20 text-goldLight flex items-center justify-center text-lg">
-                    <i className={`fa-solid fa-${tech.icon}`}></i>
+              <Reveal key={tech.key} delay={index * 100}>
+                <div
+                  onClick={() => setActiveKey(tech.key)}
+                  className={`tech-card-item ${isActive ? 'active' : ''}`}
+                >
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-10 h-10 rounded-xl bg-goldPrimary/20 text-goldLight flex items-center justify-center text-lg">
+                      <i className={`fa-solid fa-${tech.icon}`}></i>
+                    </div>
+                    <div>
+                      <div className="text-xs text-goldLight font-bold uppercase">{label}</div>
+                      <h4 className="font-bold text-white text-sm">{badge}</h4>
+                    </div>
                   </div>
-                  <div>
-                    <div className="text-xs text-goldLight font-bold uppercase">{label}</div>
-                    <h4 className="font-bold text-white text-sm">{badge}</h4>
-                  </div>
+                  <p className="text-xs text-slate-300">
+                    {summary}
+                  </p>
                 </div>
-                <p className="text-xs text-slate-300">
-                  {summary}
-                </p>
-              </div>
+              </Reveal>
             );
           })}
         </div>
 
         {/* Main Large HD Video & Detail Showcase Container */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white/5 border border-goldPrimary/30 rounded-3xl p-6 sm:p-10 shadow-2xl backdrop-blur-xl">
+        <Reveal className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white/5 border border-goldPrimary/30 rounded-3xl p-6 sm:p-10 shadow-2xl backdrop-blur-xl">
           {/* Left: Expanded HD Video Player */}
           <div className="lg:col-span-7">
-            <div className="tech-hero-container relative">
+            <div key={currentTech.videoSrc} className="tech-hero-container relative animate-in fade-in duration-500">
               <video
-                key={currentTech.videoSrc}
                 autoPlay
                 loop
                 muted
@@ -92,7 +93,7 @@ export default function TechShowcase() {
           </div>
 
           {/* Right: Information & Features */}
-          <div className="lg:col-span-5 space-y-6">
+          <div key={activeKey} className="lg:col-span-5 space-y-6 animate-in fade-in slide-in-from-right-3 duration-500">
             <div>
               <span className="text-xs uppercase tracking-widest text-goldLight font-bold block mb-1">
                 {t('doctor_title')}
@@ -122,7 +123,7 @@ export default function TechShowcase() {
               </a>
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

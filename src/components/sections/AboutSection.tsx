@@ -3,6 +3,7 @@
 import { useLanguage } from '@/context/LanguageContext';
 import Reveal from '@/components/ui/Reveal';
 import LazyVideo from '@/components/ui/LazyVideo';
+import { videoUrl } from '@/lib/media';
 
 export default function AboutSection() {
   const { t } = useLanguage();
@@ -16,7 +17,7 @@ export default function AboutSection() {
             <div className="relative">
               <div className="video-frame-luxury aspect-[3/4] relative">
                 <LazyVideo
-                  src="/media/doctor-timelapse.mp4"
+                  src={videoUrl('doctor-timelapse.mp4')}
                   poster="/media/cabinet-doctor-office.jpg"
                   className="w-full h-full object-cover"
                 />

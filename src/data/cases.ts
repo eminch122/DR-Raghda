@@ -1,4 +1,5 @@
 import { ClinicalCase } from '@/types';
+import { videoUrl } from '@/lib/media';
 
 export const clinicalCases: ClinicalCase[] = [
   {
@@ -19,9 +20,9 @@ export const clinicalCases: ClinicalCase[] = [
     description:
       "Alignement dentaire sans bagues métalliques grâce aux gouttières transparentes et à la planification numérique 3D assistée par ordinateur.",
     beforeType: 'video',
-    beforeSrc: '/media/aligneurs-avant.mp4',
+    beforeSrc: videoUrl('aligneurs-avant.mp4'),
     afterType: 'video',
-    afterSrc: '/media/aligneurs-apres.mp4',
+    afterSrc: videoUrl('aligneurs-apres.mp4'),
     icon: 'teeth',
     tabLabel: '2. Aligneurs Invisibles',
   },
@@ -33,7 +34,7 @@ export const clinicalCases: ClinicalCase[] = [
     beforeType: 'image',
     beforeSrc: '/media/implant-before.jpg',
     afterType: 'video',
-    afterSrc: '/media/implant-after.mp4',
+    afterSrc: videoUrl('implant-after.mp4'),
     icon: 'tooth',
     tabLabel: '3. Implantologie',
   },
@@ -79,9 +80,9 @@ export const clinicalCases: ClinicalCase[] = [
     description:
       "Reconstruction globale du secteur antérieur par prothèses céramiques de haute translucidité pour restituer l'alignement et la mastication.",
     beforeType: 'video',
-    beforeSrc: '/media/prosthetic-before.mp4',
+    beforeSrc: videoUrl('prosthetic-before.mp4'),
     afterType: 'video',
-    afterSrc: '/media/prosthetic-after.mp4',
+    afterSrc: videoUrl('prosthetic-after.mp4'),
     icon: 'crown',
     tabLabel: '7. Réhabilitation Prothétique',
   },

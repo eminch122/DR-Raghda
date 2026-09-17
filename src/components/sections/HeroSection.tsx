@@ -3,6 +3,7 @@
 import { useLanguage } from '@/context/LanguageContext';
 import { useVideoModal } from '@/context/VideoModalContext';
 import Reveal from '@/components/ui/Reveal';
+import { videoUrl } from '@/lib/media';
 
 export default function HeroSection() {
   const { t } = useLanguage();
@@ -54,7 +55,7 @@ export default function HeroSection() {
 
               <button
                 type="button"
-                onClick={() => openModal('/media/cabinet-tour.mp4')}
+                onClick={() => openModal(videoUrl('cabinet-tour.mp4'))}
                 className="btn-outline text-base px-7 py-3.5 group cursor-pointer"
               >
                 <i className="fa-solid fa-play text-goldDark group-hover:scale-110 transition-transform"></i>
@@ -115,7 +116,7 @@ export default function HeroSection() {
               {/* Video Container */}
               <div className="video-frame-luxury aspect-[4/5] relative">
                 <video autoPlay loop muted playsInline className="w-full h-full object-cover">
-                  <source src="/media/doctor-photoshoot.mp4" type="video/mp4" />
+                  <source src={videoUrl('doctor-photoshoot.mp4')} type="video/mp4" />
                 </video>
 
                 {/* Floating Practitioner Overlay Badge */}

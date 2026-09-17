@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { clinicPhotos } from '@/data/clinicGallery';
@@ -18,17 +18,6 @@ export default function CabinetShowcase() {
 
   const currentIndex = clinicPhotos.findIndex((p) => p.key === activePhotoKey);
   const currentPhoto = clinicPhotos[currentIndex !== -1 ? currentIndex : 0];
-
-  useEffect(() => {
-    // Eagerly pre-warm browser cache for all 5 clinic photos immediately
-    clinicPhotos.forEach((photo) => {
-      const img = new window.Image();
-      img.src = photo.src;
-      img.onload = () => {
-        setLoadedMap((prev) => ({ ...prev, [photo.key]: true }));
-      };
-    });
-  }, []);
 
   const handlePrev = () => {
     const prevIdx = (currentIndex - 1 + clinicPhotos.length) % clinicPhotos.length;
@@ -84,8 +73,8 @@ export default function CabinetShowcase() {
                     alt={altText}
                     fill
                     sizes="(max-width: 1280px) 100vw, 1200px"
-                    priority={true}
-                    unoptimized
+                    priority={isActive}
+                    loading={isActive ? undefined : 'lazy'}
                     onLoad={() => setLoadedMap((prev) => ({ ...prev, [photo.key]: true }))}
                     className={`object-cover transition-opacity duration-300 ${
                       loadedMap[photo.key] ? 'opacity-100' : 'opacity-0'
@@ -97,12 +86,12 @@ export default function CabinetShowcase() {
 
             {/* Top Overlay Badges */}
             <div className="absolute top-4 sm:top-6 inset-x-4 sm:inset-x-6 flex items-center justify-between z-20 pointer-events-none">
-              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-deepSlate/85 backdrop-blur-md border border-goldPrimary/40 text-white text-xs font-semibold shadow-lg">
+              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-deepSlate/85 border border-goldPrimary/40 text-white text-xs font-semibold shadow-lg">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                 <span>{t('cabinet_hd_visit')}</span>
               </span>
 
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-deepSlate/85 backdrop-blur-md border border-white/20 text-slate-200 text-xs font-mono font-medium shadow-lg">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-deepSlate/85 border border-white/20 text-slate-200 text-xs font-mono font-medium shadow-lg">
                 <i className="fa-solid fa-camera text-goldLight text-[0.75rem]"></i>
                 <span>{currentIndex + 1} / {clinicPhotos.length}</span>
               </span>
@@ -113,7 +102,7 @@ export default function CabinetShowcase() {
               type="button"
               onClick={handlePrev}
               aria-label={t('cabinet_prev_photo')}
-              className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-deepSlate/75 hover:bg-deepSlate text-white border border-white/25 hover:border-goldPrimary flex items-center justify-center backdrop-blur-md transition-all z-20 shadow-xl cursor-pointer hover:scale-105 active:scale-95"
+              className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-deepSlate/75 hover:bg-deepSlate text-white border border-white/25 hover:border-goldPrimary flex items-center justify-center transition-all z-20 shadow-xl cursor-pointer hover:scale-105 active:scale-95"
             >
               <i className="fa-solid fa-chevron-left text-sm sm:text-base"></i>
             </button>
@@ -122,7 +111,7 @@ export default function CabinetShowcase() {
               type="button"
               onClick={handleNext}
               aria-label={t('cabinet_next_photo')}
-              className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-deepSlate/75 hover:bg-deepSlate text-white border border-white/25 hover:border-goldPrimary flex items-center justify-center backdrop-blur-md transition-all z-20 shadow-xl cursor-pointer hover:scale-105 active:scale-95"
+              className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-deepSlate/75 hover:bg-deepSlate text-white border border-white/25 hover:border-goldPrimary flex items-center justify-center transition-all z-20 shadow-xl cursor-pointer hover:scale-105 active:scale-95"
             >
               <i className="fa-solid fa-chevron-right text-sm sm:text-base"></i>
             </button>
@@ -141,7 +130,7 @@ export default function CabinetShowcase() {
                 </p>
               </div>
 
-              <div className="hidden md:flex items-center gap-2 text-xs text-slate-300 font-medium bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 self-start sm:self-auto">
+              <div className="hidden md:flex items-center gap-2 text-xs text-slate-300 font-medium bg-white/10 px-3 py-1.5 rounded-full border border-white/20 self-start sm:self-auto">
                 <i className="fa-solid fa-hand-pointer text-goldLight text-[0.75rem]"></i>
                 <span>{t('cabinet_click_hint')}</span>
               </div>
@@ -171,8 +160,7 @@ export default function CabinetShowcase() {
                       alt={altText}
                       fill
                       sizes="220px"
-                      priority={true}
-                      unoptimized
+                      loading="lazy"
                       className={`object-cover transition-transform duration-500 ${
                         isActive ? 'scale-105 brightness-105' : 'group-hover:scale-105 opacity-80 group-hover:opacity-100'
                       }`}
@@ -201,8 +189,14 @@ export default function CabinetShowcase() {
         {/* ======================================================== */}
         <Reveal className="mb-14 rounded-3xl bg-gradient-to-br from-[#0B2528] via-[#0E3337] to-[#071C1E] border-2 border-goldPrimary/35 p-6 sm:p-10 lg:p-12 shadow-2xl relative overflow-hidden text-white">
           {/* Decorative ambient background lights */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-goldPrimary/10 rounded-full blur-3xl pointer-events-none"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-medicalTeal/30 rounded-full blur-3xl pointer-events-none"></div>
+          <div
+            className="absolute top-0 right-0 w-96 h-96 rounded-full pointer-events-none"
+            style={{ background: 'radial-gradient(circle, rgba(197,168,128,0.10) 0%, rgba(197,168,128,0) 70%)' }}
+          ></div>
+          <div
+            className="absolute bottom-0 left-0 w-96 h-96 rounded-full pointer-events-none"
+            style={{ background: 'radial-gradient(circle, rgba(17,66,70,0.30) 0%, rgba(17,66,70,0) 70%)' }}
+          ></div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
             {/* Left: Smartphone Vertical Video Reel Mockup (5 cols) */}
@@ -218,11 +212,11 @@ export default function CabinetShowcase() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/40 flex flex-col justify-between p-5 pointer-events-none">
                   {/* Top Badge */}
                   <div className="flex items-center justify-between">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-deepSlate/85 text-white text-[0.7rem] font-bold border border-goldPrimary/30 backdrop-blur-md">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-deepSlate/85 text-white text-[0.7rem] font-bold border border-goldPrimary/30">
                       <span className="pulse-dot"></span>
                       <span>{t('cabinet_video_badge')}</span>
                     </span>
-                    <span className="w-8 h-8 rounded-full bg-white/20 text-white flex items-center justify-center backdrop-blur-md">
+                    <span className="w-8 h-8 rounded-full bg-white/20 text-white flex items-center justify-center">
                       <i className="fa-solid fa-video text-xs"></i>
                     </span>
                   </div>
@@ -254,7 +248,7 @@ export default function CabinetShowcase() {
             {/* Right: Narrative Context & Key Features (7 cols) */}
             <div className="lg:col-span-7 space-y-6">
               <div className="space-y-3">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-goldPrimary/40 text-goldLight text-xs font-bold uppercase tracking-wider backdrop-blur-md">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-goldPrimary/40 text-goldLight text-xs font-bold uppercase tracking-wider">
                   <i className="fa-solid fa-vr-cardboard text-sm"></i>
                   <span>{t('cabinet_tour_badge')}</span>
                 </div>
@@ -270,7 +264,7 @@ export default function CabinetShowcase() {
 
               {/* 3 Detailed Clinic Pillars */}
               <div className="space-y-3 pt-2">
-                <div className="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-goldPrimary/40 transition-colors flex items-start gap-4 backdrop-blur-sm">
+                <div className="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-goldPrimary/40 transition-colors flex items-start gap-4">
                   <div className="w-10 h-10 rounded-xl bg-goldPrimary/20 text-goldLight flex items-center justify-center flex-shrink-0 text-lg">
                     <i className="fa-solid fa-microscope"></i>
                   </div>
@@ -282,7 +276,7 @@ export default function CabinetShowcase() {
                   </div>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-goldPrimary/40 transition-colors flex items-start gap-4 backdrop-blur-sm">
+                <div className="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-goldPrimary/40 transition-colors flex items-start gap-4">
                   <div className="w-10 h-10 rounded-xl bg-goldPrimary/20 text-goldLight flex items-center justify-center flex-shrink-0 text-lg">
                     <i className="fa-solid fa-shield-halved"></i>
                   </div>
@@ -294,7 +288,7 @@ export default function CabinetShowcase() {
                   </div>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-goldPrimary/40 transition-colors flex items-start gap-4 backdrop-blur-sm">
+                <div className="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-goldPrimary/40 transition-colors flex items-start gap-4">
                   <div className="w-10 h-10 rounded-xl bg-goldPrimary/20 text-goldLight flex items-center justify-center flex-shrink-0 text-lg">
                     <i className="fa-solid fa-couch"></i>
                   </div>

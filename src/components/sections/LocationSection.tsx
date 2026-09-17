@@ -48,7 +48,7 @@ export default function LocationSection() {
               ></iframe>
 
               {/* Floating Top Clinic Status Pill */}
-              <div className="absolute top-4 left-4 z-10 bg-deepSlate/90 backdrop-blur-md text-white px-3.5 py-2 rounded-2xl border border-goldPrimary/30 shadow-lg flex items-center gap-2.5 text-xs pointer-events-none">
+              <div className="absolute top-4 left-4 z-10 bg-deepSlate/90 text-white px-3.5 py-2 rounded-2xl border border-goldPrimary/30 shadow-lg flex items-center gap-2.5 text-xs pointer-events-none">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
                 <span className="font-semibold text-goldLight">{siteConfig.clinic.name}</span>
                 <span className="text-slate-300 hidden sm:inline">• Lac 2</span>

@@ -9,6 +9,7 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import WhatsAppFloat from '@/components/ui/WhatsAppFloat';
 import VideoModal from '@/components/ui/VideoModal';
+import DeferredStylesheet from '@/components/ui/DeferredStylesheet';
 import { siteConfig } from '@/data/siteConfig';
 import { Lang } from '@/types';
 
@@ -114,10 +115,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       className={`scroll-smooth ${playfair.variable} ${jakarta.variable} ${cinzel.variable} ${tajawal.variable}`}
     >
       <head>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        />
+        <DeferredStylesheet href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

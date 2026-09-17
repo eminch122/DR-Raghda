@@ -10,8 +10,14 @@ export default function HeroSection() {
 
   return (
     <section id="hero" className="relative pt-10 pb-20 md:py-24 overflow-hidden pattern-dots">
-      <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-goldPrimary/15 blur-3xl pointer-events-none"></div>
-      <div className="absolute top-1/2 -right-32 w-[30rem] h-[30rem] rounded-full bg-medicalTeal/10 blur-3xl pointer-events-none"></div>
+      <div
+        className="absolute -top-32 -left-32 w-96 h-96 rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(197,168,128,0.15) 0%, rgba(197,168,128,0) 70%)' }}
+      ></div>
+      <div
+        className="absolute top-1/2 -right-32 w-[30rem] h-[30rem] rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(17,66,70,0.10) 0%, rgba(17,66,70,0) 70%)' }}
+      ></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -131,7 +137,7 @@ export default function HeroSection() {
               </div>
 
               {/* Floating Verified Badge Top Right */}
-              <div className="absolute -top-4 -right-4 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-goldPrimary/40 shadow-xl hidden sm:flex items-center gap-3">
+              <div className="absolute -top-4 -right-4 bg-white/95 px-4 py-2.5 rounded-2xl border border-goldPrimary/40 shadow-xl hidden sm:flex items-center gap-3">
                 <div className="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center">
                   <i className="fa-solid fa-circle-check"></i>
                 </div>

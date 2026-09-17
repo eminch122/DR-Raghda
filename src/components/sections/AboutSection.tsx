@@ -2,6 +2,7 @@
 
 import { useLanguage } from '@/context/LanguageContext';
 import Reveal from '@/components/ui/Reveal';
+import LazyVideo from '@/components/ui/LazyVideo';
 
 export default function AboutSection() {
   const { t } = useLanguage();
@@ -14,17 +15,11 @@ export default function AboutSection() {
           <Reveal direction="right" className="lg:col-span-5 order-2 lg:order-1">
             <div className="relative">
               <div className="video-frame-luxury aspect-[3/4] relative">
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
+                <LazyVideo
+                  src="/media/doctor-timelapse.mp4"
                   poster="/media/cabinet-doctor-office.jpg"
                   className="w-full h-full object-cover"
-                >
-                  <source src="/media/doctor-timelapse.mp4" type="video/mp4" />
-                </video>
+                />
 
                 {/* Clean Video Bottom Caption */}
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-6 pt-12">

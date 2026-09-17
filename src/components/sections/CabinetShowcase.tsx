@@ -8,6 +8,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { useVideoModal } from '@/context/VideoModalContext';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Reveal from '@/components/ui/Reveal';
+import LazyVideo from '@/components/ui/LazyVideo';
 
 export default function CabinetShowcase() {
   const { t } = useLanguage();
@@ -207,17 +208,11 @@ export default function CabinetShowcase() {
             {/* Left: Smartphone Vertical Video Reel Mockup (5 cols) */}
             <div className="lg:col-span-5 flex flex-col items-center">
               <div className="relative group w-full max-w-[320px] sm:max-w-[340px] aspect-[9/16] rounded-[36px] overflow-hidden shadow-2xl border-4 border-goldPrimary/40 bg-black">
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
+                <LazyVideo
+                  src="/media/cabinet-tour.mp4"
                   poster="/media/cabinet-fauteuil-soins.jpg"
                   className="w-full h-full object-cover"
-                >
-                  <source src="/media/cabinet-tour.mp4" type="video/mp4" />
-                </video>
+                />
 
                 {/* Ambient Video Overlay & Controls */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/40 flex flex-col justify-between p-5 pointer-events-none">

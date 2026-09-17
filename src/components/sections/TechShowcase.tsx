@@ -5,6 +5,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { techItems } from '@/data/techShowcase';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Reveal from '@/components/ui/Reveal';
+import LazyVideo from '@/components/ui/LazyVideo';
 
 export default function TechShowcase() {
   const { t } = useLanguage();
@@ -72,16 +73,7 @@ export default function TechShowcase() {
           {/* Left: Expanded HD Video Player */}
           <div className="lg:col-span-7">
             <div key={currentTech.videoSrc} className="tech-hero-container relative animate-in fade-in duration-500">
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
-                className="w-full h-full object-cover"
-              >
-                <source src={currentTech.videoSrc} type="video/mp4" />
-              </video>
+              <LazyVideo src={currentTech.videoSrc} className="w-full h-full object-cover" />
               <div className="absolute bottom-4 left-4 right-4 bg-deepSlate/90 backdrop-blur-md p-3.5 rounded-xl border border-goldPrimary/30 flex items-center justify-between text-xs text-white">
                 <span className="flex items-center gap-2">
                   <span className="pulse-dot"></span>

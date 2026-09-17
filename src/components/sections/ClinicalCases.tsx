@@ -5,6 +5,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { clinicalCases } from '@/data/cases';
 import SectionHeader from '@/components/ui/SectionHeader';
 import Reveal from '@/components/ui/Reveal';
+import LazyVideo from '@/components/ui/LazyVideo';
 
 export default function ClinicalCases() {
   const { t } = useLanguage();
@@ -118,20 +119,15 @@ export default function ClinicalCases() {
                 <img
                   src={activeCase.beforeSrc}
                   alt={`${currentTitle} ${t('cases_before')}`}
+                  loading="lazy"
                   className="w-full h-full object-contain bg-[#071719]"
                 />
               ) : (
-                <video
+                <LazyVideo
                   key={activeCase.beforeSrc}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
+                  src={activeCase.beforeSrc}
                   className="w-full h-full object-cover"
-                >
-                  <source src={activeCase.beforeSrc} type="video/mp4" />
-                </video>
+                />
               )}
             </div>
             <div className="comparison-badge badge-before">{t('cases_before')}</div>
@@ -148,20 +144,15 @@ export default function ClinicalCases() {
                   <img
                     src={activeCase.afterSrc}
                     alt={`${currentTitle} ${t('cases_after')}`}
+                    loading="lazy"
                     className="w-full h-full object-contain bg-[#071719]"
                   />
                 ) : (
-                  <video
+                  <LazyVideo
                     key={activeCase.afterSrc}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    preload="metadata"
+                    src={activeCase.afterSrc}
                     className="w-full h-full object-cover"
-                  >
-                    <source src={activeCase.afterSrc} type="video/mp4" />
-                  </video>
+                  />
                 )}
               </div>
             </div>

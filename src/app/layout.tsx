@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { cookies } from 'next/headers';
 import { Playfair_Display, Plus_Jakarta_Sans, Cinzel, Tajawal } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { VideoModalProvider } from '@/context/VideoModalContext';
@@ -132,6 +133,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <VideoModal />
           </VideoModalProvider>
         </LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );
